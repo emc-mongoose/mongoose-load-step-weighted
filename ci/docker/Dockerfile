@@ -12,4 +12,4 @@ FROM emcmongoose/mongoose-base:${BASE_VERSION}
 ARG BASE_VERSION
 ARG VERSION
 COPY --from=0 /build/libs/mongoose-load-step-weighted-${VERSION}.jar /tmp/
-RUN mv -f /tmp/mongoose-storage-load-step-weighted-*.jar $HOME/.mongoose/${BASE_VERSION}/ext/
+RUN mv -f /tmp/mongoose-load-step-weighted-*.jar $HOME/.mongoose/${BASE_VERSION}/ext/
