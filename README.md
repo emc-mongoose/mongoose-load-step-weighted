@@ -25,8 +25,8 @@ The weighted load is implemented as a specific scenario step:
 
 ```javascript
 WeightedLoad
-    .config(weightedWriteConfig)
-    .config(weightedReadConfig)
+    .append(weightedWriteConfig)
+    .append(weightedReadConfig)
     .run();
 ```
 
@@ -59,13 +59,18 @@ var weightedReadConfig = {
     ...
     "load": {
         "op": {
-            "weight": 80
-        },
-        "type": "read"
+            "weight": 80,
+            "type": "read"
+        }
     },
     ...
 };
 ```
+
+**By default** weights are distributed evenly between steps. For example
+* if 1 step  - weight == 100%
+* if 2 steps - weight == 50% for each
+* if 3 steps - weight == 33% for each, etc.
 
 **Notes**
 > * Full example may be found in the `example/scenario/js/types/weighted.js` scenario file.
@@ -83,3 +88,6 @@ Specific log messages:
 2. `Weighted load step "<STEP_ID>" started`
 3. `Weighted load step "<STEP_ID>" done`
 4. `Weighted load step "<STEP_ID>" timeout`
+
+## Jar & Sources
+http://central.maven.org/maven2/com/github/emc-mongoose/mongoose-load-step-weighted/
