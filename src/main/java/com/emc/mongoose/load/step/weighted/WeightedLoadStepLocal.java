@@ -130,8 +130,9 @@ public class WeightedLoadStepLocal
 				}
 
 				final DataInput dataInput = DataInput.instance(
-								dataInputConfig.stringVal("file"), dataInputConfig.stringVal("seed"), dataLayerSize,
-								dataLayerConfig.intVal("cache"));
+					dataInputConfig.stringVal("file"), dataInputConfig.stringVal("seed"), dataLayerSize,
+					dataLayerConfig.intVal("cache"), dataInputConfig.boolVal("heap")
+				);
 
 				final int batchSize = loadConfig.intVal("batch-size");
 
@@ -146,14 +147,14 @@ public class WeightedLoadStepLocal
 
 					try {
 						final LoadGeneratorBuilder generatorBuilder = new LoadGeneratorBuilderImpl<>()
-										.itemConfig(itemConfig)
-										.loadConfig(loadConfig)
-										.itemType(itemType)
-										.itemFactory((ItemFactory) itemFactory)
-										.loadOperationsOutput(driver)
-										.authConfig(storageConfig.configVal("auth"))
-										.originIndex(originIndex)
-										.addThrottle(weightThrottle);
+							.itemConfig(itemConfig)
+							.loadConfig(loadConfig)
+							.itemType(itemType)
+							.itemFactory((ItemFactory) itemFactory)
+							.loadOperationsOutput(driver)
+							.authConfig(storageConfig.configVal("auth"))
+							.originIndex(originIndex)
+							.addThrottle(weightThrottle);
 						if (rateLimit > 0) {
 							generatorBuilder.addThrottle(new RateThrottle(rateLimit));
 						}
@@ -175,9 +176,9 @@ public class WeightedLoadStepLocal
 								stepCtx.operationsResultsOutput(itemOutput);
 							} catch (final IOException e) {
 								LogUtil.exception(
-												Level.ERROR, e,
-												"Failed to initialize the item output, the processed " +
-																"items info won't be persisted");
+									Level.ERROR, e, "Failed to initialize the item output, the processed " +
+									"items info won't be persisted"
+								);
 							}
 						}
 					} catch (final IllegalConfigurationException e) {
