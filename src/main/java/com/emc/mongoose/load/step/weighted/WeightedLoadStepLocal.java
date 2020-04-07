@@ -131,7 +131,7 @@ public class WeightedLoadStepLocal
 
 				final DataInput dataInput = DataInput.instance(
 					dataInputConfig.stringVal("file"), dataInputConfig.stringVal("seed"), dataLayerSize,
-					dataLayerConfig.intVal("cache"), dataInputConfig.boolVal("heap")
+					dataLayerConfig.intVal("cache"), dataLayerConfig.boolVal("heap")
 				);
 
 				final int batchSize = loadConfig.intVal("batch-size");
