@@ -90,4 +90,4 @@ Specific log messages:
 4. `Weighted load step "<STEP_ID>" timeout`
 
 ## Jar & Sources
-http://central.maven.org/maven2/com/github/emc-mongoose/mongoose-load-step-weighted/
+https://mvnrepository.com/artifact/com.github.emc-mongoose/mongoose-load-step-weighted 
